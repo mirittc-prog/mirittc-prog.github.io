@@ -1,0 +1,38 @@
+name: עדכון שבועי — תקציר הזדמנויות AI
+
+on:
+  schedule:
+    - cron: '0 7 * * 0'   # כל יום ראשון בשעה 9:00 שעון ישראל (7:00 UTC)
+  workflow_dispatch:       # אפשרות להפעיל ידנית מ-GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  update-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Generate weekly digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python generate_digest.py
+
+      - name: Commit and push updated digest
+        run: |
+          git config --global user.email "digest-bot@noreply.github.com"
+          git config --global user.name "AI Digest Bot"
+          git add index.html
+          git diff --staged --quiet || git commit -m "🤖 עדכון שבועי — $(date +'%d/%m/%Y')"
+          git push
