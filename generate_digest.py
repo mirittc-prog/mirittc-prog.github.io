@@ -144,8 +144,7 @@ def send_notification_email(date_str, issue, app_password):
 def main():
     # בדיקת משתני סביבה
     api_key      = os.environ.get("ANTHROPIC_API_KEY")
-    app_password = os.environ.get("GMAIL_APP_PASSWORD")
-
+    app_password = os.environ.get("GMAIL_APP_PASSWORD", "").replace('\xa0', '').replace(' ', '').strip()
     if not api_key:
         print("❌ ANTHROPIC_API_KEY not set")
         sys.exit(1)
