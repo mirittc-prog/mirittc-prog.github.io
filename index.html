@@ -3,66 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🤖 הזדמנויות AI לאמנים – גיליון #31</title>
+<title>🤖 הזדמנויות AI לאמנים · גיליון #32</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg: #0d0d14;
     --card: #1e1e2e;
     --border: #2a2a3e;
     --accent-intl: #e94560;
     --accent-il: #4a9eff;
-    --text: #e0e0f0;
-    --text-dim: #8888aa;
-    --tag-bg: #252540;
-    --radius: 12px;
-    --shadow: 0 4px 24px rgba(0,0,0,0.45);
+    --text: #e8e8f0;
+    --text-muted: #8888aa;
+    --text-dim: #5a5a7a;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --surface: #16162a;
   }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
-    line-height: 1.65;
-    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    direction: rtl;
   }
 
-  /* ===== NAVBAR ===== */
-  nav {
+  /* ─── NAVBAR ─── */
+  .navbar {
     position: sticky;
     top: 0;
     z-index: 100;
     background: rgba(13,13,20,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 20px;
+    padding: 0 24px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 58px;
   }
-  .nav-brand {
-    font-size: 1.2rem;
+  .navbar-brand {
+    font-size: 18px;
     font-weight: 700;
     color: var(--text);
-    letter-spacing: -0.3px;
+    letter-spacing: 0.3px;
   }
-  .nav-brand span { color: var(--accent-intl); }
-  .nav-date {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    background: var(--tag-bg);
+  .navbar-brand span { color: var(--accent-intl); }
+  .navbar-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
     padding: 4px 12px;
     border-radius: 20px;
-    border: 1px solid var(--border);
   }
 
-  /* ===== HERO ===== */
+  /* ─── HERO ─── */
   .hero {
-    background: linear-gradient(135deg, #12122a 0%, #1a0a1e 50%, #0d1a2a 100%);
+    background: linear-gradient(135deg, #0d0d14 0%, #12122a 40%, #0d0d20 100%);
     border-bottom: 1px solid var(--border);
-    padding: 56px 20px 48px;
+    padding: 56px 24px 48px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -70,712 +72,819 @@
   .hero::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(233,69,96,0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 45% at 80% 100%, rgba(74,158,255,0.1) 0%, transparent 70%);
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(233,69,96,0.07) 0%, transparent 65%);
     pointer-events: none;
   }
-  .hero-issue {
+  .hero-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--accent-intl), #c0392b);
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 5px 16px;
+    background: rgba(233,69,96,0.12);
+    border: 1px solid rgba(233,69,96,0.35);
+    color: var(--accent-intl);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
     border-radius: 20px;
     margin-bottom: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .hero h1 {
-    font-size: clamp(1.9rem, 5vw, 3.2rem);
-    font-weight: 900;
-    line-height: 1.15;
-    margin-bottom: 14px;
-    background: linear-gradient(120deg, #fff 30%, #c0b8ff);
+    font-size: clamp(26px,5vw,46px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #e8e8f0 30%, var(--accent-intl));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .hero-sub {
-    color: var(--text-dim);
-    font-size: 1rem;
-    max-width: 540px;
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 600px;
     margin: 0 auto 36px;
   }
-  .stats-grid {
+  .hero-stats {
     display: flex;
-    flex-wrap: wrap;
+    gap: 12px;
     justify-content: center;
-    gap: 14px;
-    max-width: 700px;
+    flex-wrap: wrap;
+    max-width: 750px;
     margin: 0 auto;
   }
-  .stat-chip {
-    background: var(--card);
+  .stat-pill {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 22px;
+    border-radius: 12px;
+    padding: 14px 20px;
     text-align: center;
-    min-width: 120px;
-    transition: transform 0.2s, border-color 0.2s;
+    min-width: 130px;
+    flex: 1;
+    transition: border-color 0.2s;
   }
-  .stat-chip:hover { transform: translateY(-2px); border-color: var(--accent-intl); }
-  .stat-chip .num {
-    font-size: 1.7rem;
+  .stat-pill:hover { border-color: var(--accent-intl); }
+  .stat-number {
+    font-size: 28px;
     font-weight: 800;
-    display: block;
     line-height: 1;
     margin-bottom: 4px;
   }
-  .stat-chip .lbl { font-size: 0.72rem; color: var(--text-dim); }
-  .stat-chip.intl .num { color: var(--accent-intl); }
-  .stat-chip.il .num { color: var(--accent-il); }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .c-intl { color: var(--accent-intl); }
+  .c-il   { color: var(--accent-il); }
+  .c-green { color: var(--success); }
+  .c-warn  { color: var(--warning); }
 
-  /* ===== TABS ===== */
-  .tabs-wrap {
-    background: var(--bg);
+  /* ─── TABS ─── */
+  .tabs-wrapper {
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 0 20px;
+    padding: 0 24px;
     position: sticky;
-    top: 58px;
+    top: 60px;
     z-index: 90;
   }
   .tabs {
     display: flex;
-    gap: 2px;
+    gap: 0;
     overflow-x: auto;
     scrollbar-width: none;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
   }
   .tabs::-webkit-scrollbar { display: none; }
   .tab-btn {
     background: none;
     border: none;
-    color: var(--text-dim);
-    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-size: 13px;
     font-weight: 600;
-    padding: 14px 18px;
+    padding: 16px 20px;
     cursor: pointer;
     white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
     font-family: inherit;
+    direction: rtl;
   }
   .tab-btn:hover { color: var(--text); }
-  .tab-btn.active { color: var(--accent-intl); border-bottom-color: var(--accent-intl); }
-  .tab-btn.active.il-tab { color: var(--accent-il); border-bottom-color: var(--accent-il); }
-
-  /* ===== MAIN CONTENT ===== */
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 60px;
+  .tab-btn.active {
+    color: var(--accent-intl);
+    border-bottom-color: var(--accent-intl);
   }
 
-  /* ===== SECTION HEADER ===== */
-  .section-hdr {
+  /* ─── MAIN CONTENT ─── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ─── SECTION HEADING ─── */
+  .section-heading {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     margin-top: 48px;
   }
-  .section-hdr:first-child { margin-top: 0; }
-  .section-hdr h2 {
-    font-size: 1.25rem;
-    font-weight: 800;
+  .section-heading:first-child { margin-top: 0; }
+  .section-heading h2 {
+    font-size: 20px;
+    font-weight: 700;
     color: var(--text);
   }
-  .section-hdr .count {
-    background: var(--tag-bg);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.72rem;
+  .section-count {
+    background: rgba(233,69,96,0.15);
+    color: var(--accent-intl);
+    font-size: 11px;
     font-weight: 700;
-    padding: 2px 9px;
-    border-radius: 10px;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .section-count.il {
+    background: rgba(74,158,255,0.15);
+    color: var(--accent-il);
   }
   .section-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+    background: var(--border);
   }
 
-  /* ===== ISRAEL DIVIDER ===== */
-  .il-divider {
+  /* ─── ISRAEL DIVIDER ─── */
+  .israel-divider {
+    margin: 56px 0 40px;
     display: flex;
     align-items: center;
     gap: 16px;
-    margin: 52px 0 28px;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, rgba(74,158,255,0.06), rgba(74,158,255,0.02));
+    border: 1px solid rgba(74,158,255,0.2);
+    border-radius: 16px;
   }
-  .il-divider .il-line {
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent-il) 0%, transparent 100%);
-  }
-  .il-divider .il-line.rev {
-    background: linear-gradient(270deg, var(--accent-il) 0%, transparent 100%);
-  }
-  .il-divider-label {
-    background: linear-gradient(135deg, #0d2a4a, #0a1a32);
-    border: 1px solid var(--accent-il);
-    border-radius: 24px;
-    padding: 8px 22px;
-    font-size: 0.9rem;
+  .israel-divider .flag { font-size: 36px; }
+  .israel-divider-text h3 {
+    font-size: 18px;
     font-weight: 800;
     color: var(--accent-il);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    box-shadow: 0 0 20px rgba(74,158,255,0.15);
+    margin-bottom: 2px;
+  }
+  .israel-divider-text p {
+    font-size: 13px;
+    color: var(--text-muted);
   }
 
-  /* ===== CARDS GRID ===== */
+  /* ─── CARDS GRID ─── */
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
   }
 
-  /* ===== CARD ===== */
+  /* ─── CARD ─── */
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px 20px 18px;
+    border-radius: 16px;
+    padding: 22px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
+    gap: 14px;
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-intl), #c0392b);
-    opacity: 0;
-    transition: opacity 0.2s;
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(233,69,96,0.4);
+    box-shadow: 0 8px 32px rgba(233,69,96,0.08);
   }
-  .card.il-card::before {
-    background: linear-gradient(90deg, var(--accent-il), #2563eb);
+  .card.il-card:hover {
+    border-color: rgba(74,158,255,0.4);
+    box-shadow: 0 8px 32px rgba(74,158,255,0.08);
   }
-  .card:hover { transform: translateY(-3px); border-color: #3a3a5a; box-shadow: 0 8px 32px rgba(0,0,0,0.55); }
-  .card:hover::before { opacity: 1; }
-
-  .card-top {
+  .card-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
   }
-  .card-emoji {
-    font-size: 1.5rem;
+  .card-icon {
+    font-size: 26px;
+    line-height: 1;
     flex-shrink: 0;
-    margin-top: 1px;
   }
   .card-title {
-    font-size: 1rem;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
     line-height: 1.3;
     flex: 1;
-    color: var(--text);
   }
   .urgent-badge {
-    font-size: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(251,191,36,0.12);
+    border: 1px solid rgba(251,191,36,0.35);
+    color: var(--warning);
+    font-size: 11px;
     font-weight: 700;
-    background: rgba(233,69,96,0.15);
-    color: var(--accent-intl);
-    border: 1px solid rgba(233,69,96,0.4);
     padding: 3px 8px;
-    border-radius: 6px;
+    border-radius: 8px;
     white-space: nowrap;
-    animation: urgentPulse 1.4s ease-in-out infinite;
     flex-shrink: 0;
+    animation: blink 1.8s ease-in-out infinite;
   }
-  @keyframes urgentPulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(233,69,96,0.35); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(233,69,96,0); }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
   }
 
-  .tags {
+  /* ─── TAGS ─── */
+  .card-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 7px;
   }
   .tag {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 0.72rem;
+    font-size: 11px;
     font-weight: 600;
     padding: 4px 10px;
-    border-radius: 6px;
-    background: var(--tag-bg);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    white-space: nowrap;
+    border-radius: 8px;
+    border: 1px solid transparent;
   }
-  .tag.deadline { color: #f0a04a; border-color: rgba(240,160,74,0.35); background: rgba(240,160,74,0.08); }
-  .tag.location { color: #7ed8a0; border-color: rgba(126,216,160,0.35); background: rgba(126,216,160,0.08); }
-  .tag.free { color: #a78bfa; border-color: rgba(167,139,250,0.35); background: rgba(167,139,250,0.08); }
-  .tag.prize { color: #f0d060; border-color: rgba(240,208,96,0.35); background: rgba(240,208,96,0.08); }
-  .tag.il { color: var(--accent-il); border-color: rgba(74,158,255,0.35); background: rgba(74,158,255,0.08); }
+  .tag-deadline {
+    background: rgba(233,69,96,0.1);
+    border-color: rgba(233,69,96,0.25);
+    color: #f87898;
+  }
+  .tag-location {
+    background: rgba(138,110,255,0.1);
+    border-color: rgba(138,110,255,0.25);
+    color: #b09eff;
+  }
+  .tag-free {
+    background: rgba(74,222,128,0.1);
+    border-color: rgba(74,222,128,0.25);
+    color: #4ade80;
+  }
+  .tag-prize {
+    background: rgba(251,191,36,0.1);
+    border-color: rgba(251,191,36,0.25);
+    color: #fbbf24;
+  }
+  .tag-il {
+    background: rgba(74,158,255,0.1);
+    border-color: rgba(74,158,255,0.3);
+    color: var(--accent-il);
+  }
 
+  /* ─── CARD DESCRIPTION ─── */
   .card-desc {
-    font-size: 0.875rem;
-    color: var(--text-dim);
-    line-height: 1.6;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.65;
   }
 
+  /* ─── CARD BUTTON ─── */
+  .card-footer {
+    margin-top: auto;
+  }
   .card-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, var(--accent-intl), #c0392b);
-    border: none;
-    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(233,69,96,0.15), rgba(233,69,96,0.08));
+    border: 1px solid rgba(233,69,96,0.3);
+    color: var(--accent-intl);
+    font-size: 13px;
+    font-weight: 600;
     padding: 9px 18px;
+    border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
-    transition: opacity 0.2s, transform 0.15s;
-    align-self: flex-start;
-    margin-top: 4px;
+    transition: all 0.2s;
     font-family: inherit;
+    direction: rtl;
   }
-  .card-btn:hover { opacity: 0.88; transform: translateX(-2px); }
-  .card-btn.il-btn { background: linear-gradient(135deg, var(--accent-il), #2563eb); }
-
-  /* ===== FOOTER ===== */
-  footer {
-    background: #0a0a11;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    padding: 28px 20px;
-    color: var(--text-dim);
-    font-size: 0.8rem;
+  .card-btn:hover {
+    background: linear-gradient(135deg, rgba(233,69,96,0.28), rgba(233,69,96,0.15));
+    transform: scale(1.02);
   }
-  footer span { color: var(--text-dim); opacity: 0.7; }
+  .card-btn.il-btn {
+    background: linear-gradient(135deg, rgba(74,158,255,0.15), rgba(74,158,255,0.08));
+    border-color: rgba(74,158,255,0.3);
+    color: var(--accent-il);
+  }
+  .card-btn.il-btn:hover {
+    background: linear-gradient(135deg, rgba(74,158,255,0.28), rgba(74,158,255,0.15));
+  }
 
-  /* ===== HIDDEN ===== */
-  .section-block { transition: opacity 0.2s; }
+  /* ─── SECTION HIDDEN ─── */
+  .section-block { display: block; }
   .section-block.hidden { display: none; }
   .card.hidden { display: none; }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 600px) {
-    .cards-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 1.7rem; }
-    .stats-grid { gap: 10px; }
-    .stat-chip { min-width: 100px; padding: 10px 14px; }
-    .nav-brand { font-size: 1rem; }
-    .tab-btn { padding: 12px 12px; font-size: 0.78rem; }
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 28px 24px;
+    text-align: center;
   }
+  .footer p {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .footer p span { color: var(--accent-intl); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .navbar { padding: 0 14px; }
+    .hero { padding: 36px 16px 32px; }
+    .main { padding: 28px 14px 48px; }
+    .cards-grid { grid-template-columns: 1fr; gap: 14px; }
+    .tab-btn { padding: 14px 14px; font-size: 12px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { min-width: 100px; padding: 12px 14px; }
+  }
+
+  /* ─── SCROLL TOP ─── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
 </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav>
-  <div class="nav-brand">🤖 <span>הזדמנויות AI</span> לאמנים</div>
-  <div class="nav-date">📅 11 באוקטובר 2026</div>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-brand">🤖 <span>הזדמנויות AI</span> לאמנים</div>
+  <div class="navbar-date">📅 18 באוקטובר 2026</div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<header class="hero">
-  <div class="hero-issue">גיליון #31 · אוקטובר 2026</div>
-  <h1>הזדמנויות AI לאמנים ויוצרים</h1>
-  <p class="hero-sub">פסטיבלים, תחרויות, שהיות ומלגות בתחום אמנות הבינה המלאכותית — בינלאומי ומישראל</p>
-  <div class="stats-grid">
-    <div class="stat-chip intl">
-      <span class="num">4</span>
-      <span class="lbl">🎬 פסטיבלי סרטים</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">📋 גיליון #32 · עדכון שבועי</div>
+  <h1>הזדמנויות AI לאמנות ויצירה</h1>
+  <p class="hero-sub">אוסף עדכני של פסטיבלים, תחרויות, שהיות ומלגות לאמנים שעובדים עם בינה מלאכותית · ישראל ועולם</p>
+  <div class="hero-stats">
+    <div class="stat-pill">
+      <div class="stat-number c-intl">4</div>
+      <div class="stat-label">🎬 פסטיבלי סרטים</div>
     </div>
-    <div class="stat-chip intl">
-      <span class="num">4</span>
-      <span class="lbl">🖼️ קולות קוראים</span>
+    <div class="stat-pill">
+      <div class="stat-number c-intl">4</div>
+      <div class="stat-label">🖼️ קולות קוראים</div>
     </div>
-    <div class="stat-chip intl">
-      <span class="num">3</span>
-      <span class="lbl">🏛️ שהיות ומלגות</span>
+    <div class="stat-pill">
+      <div class="stat-number c-intl">4</div>
+      <div class="stat-label">🏛️ שהיות ומלגות</div>
     </div>
-    <div class="stat-chip il">
-      <span class="num">3</span>
-      <span class="lbl">🇮🇱 ישראל</span>
+    <div class="stat-pill">
+      <div class="stat-number c-il">3</div>
+      <div class="stat-label">🇮🇱 ישראל</div>
     </div>
-    <div class="stat-chip">
-      <span class="num" style="color:#f0d060">14</span>
-      <span class="lbl">✨ סה"כ הזדמנויות</span>
+    <div class="stat-pill">
+      <div class="stat-number c-green">15</div>
+      <div class="stat-label">✅ סה״כ הזדמנויות</div>
     </div>
   </div>
-</header>
+</section>
 
-<!-- ===== TABS ===== -->
-<div class="tabs-wrap">
+<!-- TABS -->
+<div class="tabs-wrapper">
   <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('all', this)">🌐 הכל</button>
-    <button class="tab-btn" onclick="showTab('film', this)">🎬 פסטיבלי סרטים</button>
-    <button class="tab-btn" onclick="showTab('art', this)">🖼️ אמנות</button>
-    <button class="tab-btn" onclick="showTab('residency', this)">🏛️ שהיות</button>
-    <button class="tab-btn il-tab" onclick="showTab('israel', this)">🇮🇱 ישראל</button>
+    <button class="tab-btn active" onclick="showTab('all')">🌐 הכל</button>
+    <button class="tab-btn" onclick="showTab('film')">🎬 פסטיבלי סרטים</button>
+    <button class="tab-btn" onclick="showTab('art')">🖼️ אמנות</button>
+    <button class="tab-btn" onclick="showTab('residency')">🏛️ שהיות</button>
+    <button class="tab-btn" onclick="showTab('israel')">🇮🇱 ישראל</button>
   </div>
 </div>
 
-<!-- ===== MAIN ===== -->
-<main class="container">
+<!-- MAIN -->
+<main class="main">
 
-  <!-- ===== SECTION: FESTIVALS ===== -->
-  <div class="section-block" id="block-film">
-    <div class="section-hdr">
+  <!-- ══════════════════════════════════════ -->
+  <!-- 🎬 FILM FESTIVALS                      -->
+  <!-- ══════════════════════════════════════ -->
+  <div id="section-film" class="section-block">
+    <div class="section-heading">
       <h2>🎬 פסטיבלי סרטים AI</h2>
-      <span class="count">4 הזדמנויות</span>
+      <span class="section-count">4 הזדמנויות</span>
       <div class="section-line"></div>
     </div>
     <div class="cards-grid">
 
-      <!-- CARD 1: We Are Human -->
+      <!-- Card 1: Forward/LTX -->
       <div class="card" data-cat="film">
-        <div class="card-top">
-          <span class="card-emoji">🌍</span>
-          <h3 class="card-title">We Are Human Festival – קול קורא בינלאומי</h3>
-          <span class="urgent-badge">⚠️ דחוף!</span>
+        <div class="card-header">
+          <div class="card-icon">🎞️</div>
+          <div class="card-title">Shortest AI Film Competition — Forward × LTX</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 30 ספטמבר 2026</span>
-          <span class="tag location">📍 פריז + סיבוב עולמי</span>
-          <span class="tag free">✅ חינם</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ נסגר</span>
+          <span class="tag tag-location">📍 ברלין, גרמניה</span>
+          <span class="tag tag-free">✅ חינם</span>
+          <span class="tag tag-prize">🏆 פרסי מזומן</span>
         </div>
-        <p class="card-desc">הפסטיבל הבינלאומי הראשון לסרטים בעידן ה-AI המתמקד בזכויות אדם ויצירה הומנית-AI משותפת. מזמין יוצרים.ות, אמנים.ות ויוצרי קולנוע להגיש סרטים קצרים (1–10 דקות) החוקרים את הקשר בין AI ליצירה ויזואלית. סרטים שנבחרו יוקרנו בפריז (Forum des images) ובסאו פאולו, ניו יורק, נירובי, מומבאי ועוד.</p>
-        <a class="card-btn" href="https://wearehuman.foundation/en/call-for-films/" target="_blank">🔗 להגשה &larr;</a>
+        <div class="card-desc">
+          תחרות הסרטים הקצרים של פוורד ו-LTX Studio — קול קורא לאמנים שמאמינים ש-AI הוא מדיום, לא קיצור דרך. סרטים של עד 60 שניות נבחרו לבכורה בפסטיבל בברלין (27–28 אוגוסט 2026). עובד עם LTX, פתוח לכל שפה, ועם גישה חינמית לכלי הכתיבה.
+        </div>
+        <div class="card-footer">
+          <a href="https://www.forward-festival.com/page/ai-shortest-film-competition-by-ltx" target="_blank" class="card-btn">🔗 לאתר הפסטיבל</a>
+        </div>
       </div>
 
-      <!-- CARD 2: Reply AI Film Festival -->
+      <!-- Card 2: Reply AI Film Festival -->
       <div class="card" data-cat="film">
-        <div class="card-top">
-          <span class="card-emoji">🎥</span>
-          <h3 class="card-title">Reply AI Film Festival 2026 – ונציה</h3>
+        <div class="card-header">
+          <div class="card-icon">🏆</div>
+          <div class="card-title">Reply AI Film Festival 2026 — ונציה</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 הוגש ב-2 ביוני 2026</span>
-          <span class="tag location">📍 ונציה, ספטמבר 2026</span>
-          <span class="tag prize">🏆 €30,000+</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ נסגר (יוני 2026)</span>
+          <span class="tag tag-location">📍 ונציה, איטליה</span>
+          <span class="tag tag-prize">🏆 €30,000+</span>
         </div>
-        <p class="card-desc">פסטיבל ה-AI Film הגלובלי הגדול של Reply ו-Mastercard – התחרות הראשונה המחברת יוצרי AI עם תעשיית הקולנוע הבינלאומית. הפסטיבל כלל תחרות בינלאומית להגשת סרטים שנוצרו או הועצמו באמצעות טכנולוגיות AI, עם אירוע פרמיירה בוונציה בספטמבר 2026. שימו לב: הגשות לגיליון 2026 נסגרו; עקבו אחר גיליון 2027.</p>
-        <a class="card-btn" href="https://challenges.reply.com/challenges/creative/aifilmfestival/home/" target="_blank">🔗 לאתר הפסטיבל &larr;</a>
+        <div class="card-desc">
+          הפסטיבל הראשון שמחבר כישרונות AI עם תעשיית הקולנוע הגלובלית. הגשות נסגרו ב-2 ביוני 2026, ועם בריכת פרסים של מעל 30,000 אירו וחגיגת פרמיירה בוונציה בספטמבר 2026. הפסטיבל הציג שיתוף פעולה עם Mastercard.
+        </div>
+        <div class="card-footer">
+          <a href="https://challenges.reply.com/challenges/creative/aifilmfestival/home/" target="_blank" class="card-btn">🔗 לאתר הפסטיבל</a>
+        </div>
       </div>
 
-      <!-- CARD 3: +RAIN Film Festival -->
+      <!-- Card 3: Astana AI Film Festival -->
       <div class="card" data-cat="film">
-        <div class="card-top">
-          <span class="card-emoji">🌧️</span>
-          <h3 class="card-title">+RAIN Film Festival – הפסטיבל האירופי לסרטי AI</h3>
+        <div class="card-header">
+          <div class="card-icon">🌍</div>
+          <div class="card-title">Astana AI Film Festival (AAIFF) 2026</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 8 במרץ 2026 (הסתיים)</span>
-          <span class="tag location">📍 ברצלונה, ספרד</span>
-          <span class="tag free">✅ פתוח לכולם</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ 1–3 אוקטובר 2026</span>
+          <span class="tag tag-location">📍 אסטנה, קזחסטן</span>
+          <span class="tag tag-free">🌐 בינלאומי</span>
         </div>
-        <p class="card-desc">הפסטיבל האירופי הראשון לסרטים שנוצרו בבינה מלאכותית גנרטיבית, כעת במהדורתו הרביעית. +RAIN מזמין יוצרים להציג הצעות קולנועיות הבוחנות את האפשרויות האסתטיות, הנרטיביות, האתיות והפוליטיות של AI. הגשות לגיליון 2026 הסתיימו — עקבו אחר הקול הקורא לשנת 2027.</p>
-        <a class="card-btn" href="https://www.hactebcn.org/en/actualitat/open-call-rain-film-festival-2026/" target="_blank">🔗 לאתר הפסטיבל &larr;</a>
+        <div class="card-desc">
+          הפסטיבל הבינלאומי הראשון לסרטי AI בקזחסטן קיבל 8,067 סרטים מ-125 מדינות. פסטיבל היסטורי לשנת 2026, עם תוכנית שכוללת הקרנות, כנס בינה מלאכותית, ומפגשי פיץ' עם חברות טכנולוגיה. ההגשות נסגרו — אך מחכים לגיליון 2027.
+        </div>
+        <div class="card-footer">
+          <a href="https://aaiff.ai/" target="_blank" class="card-btn">🔗 לאתר הפסטיבל</a>
+        </div>
       </div>
 
-      <!-- CARD 4: Astana AI Film Festival -->
+      <!-- Card 4: +RAIN Film Festival -->
       <div class="card" data-cat="film">
-        <div class="card-top">
-          <span class="card-emoji">🇰🇿</span>
-          <h3 class="card-title">Astana AI Film Festival – פסטיבל AI הראשון בקזחסטן</h3>
+        <div class="card-header">
+          <div class="card-icon">🌧️</div>
+          <div class="card-title">+RAIN Film Festival 2026 — מהדורה 4</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 1–3 אוקטובר 2026</span>
-          <span class="tag location">📍 אסטנה, קזחסטן</span>
-          <span class="tag free">✅ הגשות הסתיימו</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ נסגר (8 מרץ 2026)</span>
+          <span class="tag tag-location">📍 ברצלונה, ספרד</span>
+          <span class="tag tag-free">🏆 פמיירה ציבורית</span>
         </div>
-        <p class="card-desc">הפסטיבל הבינלאומי הראשון לסרטי AI בקזחסטן – קיבל 8,067 סרטים מכל העולם! הפסטיבל מציג תחרות בינלאומית לסרטים קצרים שנוצרו ב-AI (עד 10 דקות), פתוח לכולם ללא קשר לניסיון או גישה לאולפנים מקצועיים. עקבו אחר המהדורה הבאה לשנת 2027.</p>
-        <a class="card-btn" href="https://aaiff.ai/" target="_blank">🔗 לאתר הפסטיבל &larr;</a>
+        <div class="card-desc">
+          הפסטיבל האירופי הראשון לסרטי AI, עכשיו במהדורתו הרביעית. +RAIN מציע במה לסרטים שנוצרו עם AI גנרטיבי ובוחן אפשרויות אסתטיות, נרטיביות ופוליטיות של הטכנולוגיה. מיועד גם לאמנים מתחילים וחדשים.
+        </div>
+        <div class="card-footer">
+          <a href="https://www.hactebcn.org/en/actualitat/open-call-rain-film-festival-2026/" target="_blank" class="card-btn">🔗 לאתר הפסטיבל</a>
+        </div>
       </div>
 
     </div>
-  </div><!-- /block-film -->
-
-  <!-- ===== SECTION: ART ===== -->
-  <div class="section-block" id="block-art">
-    <div class="section-hdr">
-      <h2>🖼️ קולות קוראים – אמנות AI</h2>
-      <span class="count">4 הזדמנויות</span>
-      <div class="section-line"></div>
-    </div>
-    <div class="cards-grid">
-
-      <!-- CARD 5: NEXT ART AI -->
-      <div class="card" data-cat="art">
-        <div class="card-top">
-          <span class="card-emoji">🎨</span>
-          <h3 class="card-title">NEXT ART AI 2026 – HOBAN Cultural Foundation</h3>
-          <span class="urgent-badge">⚠️ דחוף!</span>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 1–30 ספטמבר 2026</span>
-          <span class="tag location">📍 קוריאה הדרונית + בינלאומי</span>
-          <span class="tag free">✅ חינם</span>
-          <span class="tag prize">🏆 ₩21,000,000</span>
-        </div>
-        <p class="card-desc">קול קורא בינלאומי חינמי לאמנות AI מקורית בתחומי תמונה ווידאו, המאורגן ע"י HOBAN Cultural Foundation מקוריאה. התחרות פתוחה לכולם ללא הבדל גיל, לאומיות או רקע מקצועי, ומזמינה יחידים וצוותים להגיש יצירות ייחודיות. הקרן המוצעת מגיעה לסך כולל של ₩21 מיליון שמחולקים בין 20 זוכים.</p>
-        <a class="card-btn" href="https://ai-arts.org/competitions/next-art-ai-2026" target="_blank">🔗 להגשה &larr;</a>
-      </div>
-
-      <!-- CARD 6: Prompt Magazine x Times Square -->
-      <div class="card" data-cat="art">
-        <div class="card-top">
-          <span class="card-emoji">🏙️</span>
-          <h3 class="card-title">Prompt Magazine × Art Innovation – Times Square NYC</h3>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 ספטמבר 2026</span>
-          <span class="tag location">📍 טיימס סקוור, ניו יורק</span>
-          <span class="tag prize">🏆 חשיפה עולמית</span>
-        </div>
-        <p class="card-desc">קול קורא בינלאומי לאמנים, מעצבים ויוצרים העוסקים בפרקטיקות ויזואליות עכשוויות. עבודות שנבחרו יוצגו על מסכי LED ענק ב-Times Square בניו יורק בין ה-25-27 בספטמבר 2026 במסגרת שבוע The Armory Show. בסך הכל ייבחרו 40 אמנים, 30 מהם על ידי הוועדה האוצרותית ו-10 דרך הצבעה ציבורית דיגיטלית.</p>
-        <a class="card-btn" href="https://www.promptmagazine.ai/pages/open-calls" target="_blank">🔗 לפרטים &larr;</a>
-      </div>
-
-      <!-- CARD 7: AI Futures Challenge -->
-      <div class="card" data-cat="art">
-        <div class="card-top">
-          <span class="card-emoji">🌐</span>
-          <h3 class="card-title">AI Futures Challenge 2026 – בניית עולמות עתידיים</h3>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 30 יוני 2026 (הסתיים)</span>
-          <span class="tag location">📍 בינלאומי / אונליין</span>
-          <span class="tag free">✅ חינם</span>
-          <span class="tag prize">🏆 פרסים + תערוכה</span>
-        </div>
-        <p class="card-desc">תחרות worldbuilding בינלאומית המזמינה משתתפים לדמיין עתיד שבו AI תורמת חיובית לחברה. המשתתפים מנחים על ידי תהליך למידה מובנה ומגישים עולמות עתידיים קוהרנטיים ואופטימיים. התחרות פתוחה לצוותים ויחידים ומשלבת קורס לימוד קצר עם אתגר יצירתי.</p>
-        <a class="card-btn" href="https://artinfoland.com/opportunities/ai-futures-challenge-2026-worldbuilding-open-call/" target="_blank">🔗 לפרטים &larr;</a>
-      </div>
-
-      <!-- CARD 8: Prix Ars Electronica -->
-      <div class="card" data-cat="art">
-        <div class="card-top">
-          <span class="card-emoji">🏅</span>
-          <h3 class="card-title">Prix Ars Electronica 2026 – פרס מדיה-ארט הוותיק בעולם</h3>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 קול קורא 2027 – ינואר 2027</span>
-          <span class="tag location">📍 לינץ, אוסטריה</span>
-          <span class="tag prize">🏆 עד €10,000</span>
-        </div>
-        <p class="card-desc">פרס מדיה-ארט היוקרתי ביותר בעולם (פועל מ-1987) – הגשות לגיליון 2026 נסגרו בה-9 במרץ 2026. הפרס כולל Golden Nica ועד €10,000 בכל קטגוריה, ומציג גם את AI for Social Impact Initiative עם Ars Electronica ו-CARE Austria. הקול הקורא הבא ייפתח בינואר 2027 — כדאי לסמן ביומן!</p>
-        <a class="card-btn" href="https://ars.electronica.art/prix/en/opencall/" target="_blank">🔗 לאתר &larr;</a>
-      </div>
-
-    </div>
-  </div><!-- /block-art -->
-
-  <!-- ===== SECTION: RESIDENCIES ===== -->
-  <div class="section-block" id="block-residency">
-    <div class="section-hdr">
-      <h2>🏛️ שהיות ומלגות AI לאמנים</h2>
-      <span class="count">3 הזדמנויות</span>
-      <div class="section-line"></div>
-    </div>
-    <div class="cards-grid">
-
-      <!-- CARD 9: Citizen AI Fellowship -->
-      <div class="card" data-cat="residency">
-        <div class="card-top">
-          <span class="card-emoji">🎓</span>
-          <h3 class="card-title">Citizen AI Arts & Technology Fellowship 2026–2027</h3>
-          <span class="urgent-badge">⚠️ דחוף!</span>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 30 ספטמבר 2026</span>
-          <span class="tag location">📍 בינלאומי</span>
-          <span class="tag prize">🏆 $3,000 מלגה</span>
-        </div>
-        <p class="card-desc">מלגת פלואושיפ המאגדת אמנים ויוצרים ממגוון דיסציפלינות לחקור את הקשר בין אמנות, AI, דמוקרטיה וחיים ציבוריים. בשנה הראשונה כל Fellow מקבל מלגה של $3,000, ובשנה השנייה מעבר לשלב יישום אינטנסיבי. לא נדרשת תואר אקדמי או מומחיות קודמת ב-AI.</p>
-        <a class="card-btn" href="https://opportunitydesk.org/2026/09/21/citizen-ai-arts-technology-fellowship-2026-2027/" target="_blank">🔗 להגשה &larr;</a>
-      </div>
-
-      <!-- CARD 10: Serpentine R&D Fellowship -->
-      <div class="card" data-cat="residency">
-        <div class="card-top">
-          <span class="card-emoji">🐍</span>
-          <h3 class="card-title">Serpentine Future Art Ecosystems R&D Fellowship</h3>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 ספטמבר 2026 (מחזור פעיל)</span>
-          <span class="tag location">📍 לונדון, בריטניה</span>
-          <span class="tag prize">🏆 בורסה + נסיעות</span>
-        </div>
-        <p class="card-desc">פרוגרם הפלואושיפ של ה-Serpentine בלונדון, שהושק בספטמבר 2026, מחבר מחקר אמנותי עם תעשייה, אקדמיה ומדיניות בתחום ה-AI. ארבעת הפלואוז נבחרו מכמעט 1,000 מועמדים דרך קול קורא בינלאומי, וכל אחד מקבל בורסה, נסיעות ללונדון ומנטורינג מוקדש. התוכנית מתקיימת במודל היברידי של שהות נמוכה.</p>
-        <a class="card-btn" href="https://fadmagazine.com/2026/09/02/serpentine-future-art-ecosystems-rd-fellowship-ai/" target="_blank">🔗 לפרטים &larr;</a>
-      </div>
-
-      <!-- CARD 11: Numèric Grant Spain -->
-      <div class="card" data-cat="residency">
-        <div class="card-top">
-          <span class="card-emoji">🇪🇸</span>
-          <h3 class="card-title">Numèric 2026 – שהות מחקר AI ואמנות בספרד</h3>
-        </div>
-        <div class="tags">
-          <span class="tag deadline">📅 בדיקה באתר</span>
-          <span class="tag location">📍 אגולאנה, קטלוניה, ספרד</span>
-          <span class="tag free">✅ ממומן</span>
-        </div>
-        <p class="card-desc">מענק שהות מחקר ויצירה בנושא "The Word" – חוקר את יחסי LLMs עם שפה, יצירה, מחברות ובינה. מוצע שני מענקים לאמנים, חוקרים וחושבים מכל הדיסציפלינות, בשיתוף Bòlit Centre d'Art Contemporani ו-Museu de l'Empordà. פרויקט ייחודי המשלב שהות בכפר קטן עם מחקר אינטלקטואלי מעמיק.</p>
-        <a class="card-btn" href="https://artinfoland.com/opportunities/numeric-2026-grant-ai-art-residency-spain" target="_blank">🔗 לפרטים &larr;</a>
-      </div>
-
-    </div>
-  </div><!-- /block-residency -->
-
-  <!-- ===== ISRAEL DIVIDER ===== -->
-  <div class="il-divider" id="il-divider">
-    <div class="il-line"></div>
-    <div class="il-divider-label">🇮🇱 ישראל · קולות קוראים מקומיים</div>
-    <div class="il-line rev"></div>
   </div>
 
-  <!-- ===== SECTION: ISRAEL ===== -->
-  <div class="section-block" id="block-israel">
-    <div class="section-hdr">
-      <h2>🇮🇱 ישראל – הזדמנויות מקומיות</h2>
-      <span class="count">3 הזדמנויות</span>
+  <!-- ══════════════════════════════════════ -->
+  <!-- 🖼️ ART COMPETITIONS                   -->
+  <!-- ══════════════════════════════════════ -->
+  <div id="section-art" class="section-block">
+    <div class="section-heading">
+      <h2>🖼️ קולות קוראים — אמנות AI</h2>
+      <span class="section-count">4 הזדמנויות</span>
       <div class="section-line"></div>
     </div>
     <div class="cards-grid">
 
-      <!-- CARD 12: Miron Sima Prize -->
-      <div class="card il-card" data-cat="israel">
-        <div class="card-top">
-          <span class="card-emoji">🏆</span>
-          <h3 class="card-title">פרס מירון סימה 2026 – "המצאות ואמיתות בעידן ה-AI"</h3>
+      <!-- Card 5: NEXT ART AI -->
+      <div class="card" data-cat="art">
+        <div class="card-header">
+          <div class="card-icon">🎨</div>
+          <div class="card-title">NEXT ART AI 2026 — HOBAN Cultural Foundation</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 19 בפברואר 2026 (הסתיים)</span>
-          <span class="tag location il">📍 ירושלים, ישראל</span>
-          <span class="tag prize">🏆 25,000 ₪ + תערוכה</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ נסגר (30 ספטמבר 2026)</span>
+          <span class="tag tag-location">📍 קוריאה + בינלאומי</span>
+          <span class="tag tag-free">✅ חינם</span>
+          <span class="tag tag-prize">🏆 ₩21,000,000</span>
         </div>
-        <p class="card-desc">בית האמנים ירושלים ועמותת מירון סימה הכריזו על תחרות 2026 בנושא "המצאות ואמיתות: מושג האמת בעידן הבינה המלאכותית". התחרות מיועדת לאמנים בגילאי 25-45 בתחומי ציור, פיסול-מיצב, צילום ומדיה חדשה. הזוכה יקבל פרס של 25,000 ₪ ותערוכת יחיד בבית האמנים ירושלים — עקבו אחר גיליון 2027!</p>
-        <a class="card-btn il-btn" href="https://www.erev-rav.com/archives/60982" target="_blank">🔗 לפרטים &larr;</a>
+        <div class="card-desc">
+          קול קורא בינלאומי חינמי לאמנות AI בתמונה ווידאו, מאורגן על ידי קרן HOBAN. הפתוח לכולם ללא קשר לגיל, לאום או רקע מקצועי, עם בריכת פרסים של 21 מיליון וון קוריאני ל-20 זוכים, ואפשרויות תצוגה בפלטפורמה מקוונת ובתערוכות פיזיות.
+        </div>
+        <div class="card-footer">
+          <a href="https://ai-arts.org/competitions/next-art-ai-2026" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
       </div>
 
-      <!-- CARD 13: AIR Givat Haviva -->
-      <div class="card il-card" data-cat="israel">
-        <div class="card-top">
-          <span class="card-emoji">🏕️</span>
-          <h3 class="card-title">תוכנית רזידנסי AIR – גבעת חביבה 2026–2027</h3>
+      <!-- Card 6: Chroma Awards -->
+      <div class="card" data-cat="art">
+        <div class="card-header">
+          <div class="card-icon">🌈</div>
+          <div class="card-title">Chroma Awards Season 2 — ElevenLabs × Google Cloud</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 7 ביולי 2026 (או עד גמר מקומות)</span>
-          <span class="tag location il">📍 גבעת חביבה, ישראל</span>
-          <span class="tag free">✅ מגורים + סטודיו</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ 31 דצמבר 2026</span>
+          <span class="tag tag-location">📍 אונליין / גלובלי</span>
+          <span class="tag tag-free">✅ חינם</span>
+          <span class="tag tag-prize">🏆 $175,000+</span>
         </div>
-        <p class="card-desc">תוכנית ייחודית בישראל ובעולם המאפשרת ל-10 בוגרי מוסדות אמנות אקדמיים – יהודים וערבים – לשהות בגבעת חביבה למשך שלושה חודשים (נובמבר 2026–ינואר 2027). המשתתפים יתנסו ויפתחו גוף עבודות חדש, ובסיום יציגו תערוכה קבוצתית. תוכנית פתוחה לבוגרים ובוגרות בלבד.</p>
-        <a class="card-btn il-btn" href="https://www.artcenter.org.il/cgi-webaxy/item?759_nh=" target="_blank">🔗 להגשה &larr;</a>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⭐ פעיל כעת!</span>
+        </div>
+        <div class="card-desc">
+          עונה 2 של תחרות AI גלובלית בשלושה תחומים: סרט, מוזיקה ומשחקים — בשיתוף ElevenLabs, Google Cloud, Fal, Freepik ו-CapCut. עונה 1 משכה 6,500 השתתפויות עם מעל $175,000 ו-$1M בזיכויי כלים, ונחתמה בהקרנה בלונדון.
+        </div>
+        <div class="card-footer">
+          <a href="https://melies.co/ai-film-festivals" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
       </div>
 
-      <!-- CARD 14: Museum Tel Aviv Annual Exhibition -->
-      <div class="card il-card" data-cat="israel">
-        <div class="card-top">
-          <span class="card-emoji">🖼️</span>
-          <h3 class="card-title">מוזיאון העיר תל אביב-יפו – קול קורא לתערוכה שנתית 2026</h3>
+      <!-- Card 7: Prompt Magazine × Art Innovation -->
+      <div class="card" data-cat="art">
+        <div class="card-header">
+          <div class="card-icon">🗽</div>
+          <div class="card-title">Prompt Magazine × Art Innovation — Times Square NYC</div>
         </div>
-        <div class="tags">
-          <span class="tag deadline">📅 בדיקה באתר</span>
-          <span class="tag location il">📍 תל אביב-יפו, ישראל</span>
-          <span class="tag prize">🏆 שכר אמנ.ית</span>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ נסגר (7 ספטמבר 2026)</span>
+          <span class="tag tag-location">📍 Times Square, ניו יורק</span>
+          <span class="tag tag-free">🌐 בינלאומי</span>
         </div>
-        <p class="card-desc">מוזיאון העיר תל אביב-יפו הוציא קול קורא לתערוכה השנתית ב-2026, הפתוח ליוצרים ויוצרות בתחומי אמנות עכשווית ומדיה חדשה. יוצרים שייבחרו יקבלו שכר אמנ.ית על פי תעריפון איגוד האמנים. כדאי לעקוב אחר האתר הרשמי לקבלת תנאים מדויקים ומועד הגשה סופי.</p>
-        <a class="card-btn il-btn" href="https://artoday.art/category/%D7%A7%D7%95%D7%9C-%D7%A7%D7%95%D7%A8%D7%90/" target="_blank">🔗 לפרטים &larr;</a>
+        <div class="card-desc">
+          קול קורא בינלאומי לאמנים, מעצבים ויוצרים חזותיים — 40 יצירות נבחרות יוצגו על שלטי LED ענקיים בטיימס סקוור (25–27 ספטמבר 2026) במהלך שבוע ה-Armory Show. 30 נבחרים על ידי ועדה אוצרותית ו-10 דרך מעורבות קהל.
+        </div>
+        <div class="card-footer">
+          <a href="https://www.promptmagazine.ai/pages/open-calls" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+      <!-- Card 8: AI Futures Challenge -->
+      <div class="card" data-cat="art">
+        <div class="card-header">
+          <div class="card-icon">🌐</div>
+          <div class="card-title">AI Futures Challenge 2026 — Worldbuilding Competition</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ בדיקה באתר</span>
+          <span class="tag tag-location">📍 אונליין / בינלאומי</span>
+          <span class="tag tag-free">✅ חינם</span>
+          <span class="tag tag-prize">🏆 פרסים + תערוכה</span>
+        </div>
+        <div class="card-desc">
+          תחרות בניית עולמות בינלאומית המזמינה משתתפים לדמיין עתיד שבו AI תורמת לחברה באופן חיובי. התוכנית משלבת קורס למידה מובנה עם אתגר יצירתי. יצירות נבחרות מוצגות בתערוכה מקוונת ואפשרות לפרסים.
+        </div>
+        <div class="card-footer">
+          <a href="https://artinfoland.com/opportunities/ai-futures-challenge-2026-worldbuilding-open-call/" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
       </div>
 
     </div>
-  </div><!-- /block-israel -->
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 🏛️ RESIDENCIES & FELLOWSHIPS          -->
+  <!-- ══════════════════════════════════════ -->
+  <div id="section-residency" class="section-block">
+    <div class="section-heading">
+      <h2>🏛️ שהיות ומלגות AI לאמנים</h2>
+      <span class="section-count">4 הזדמנויות</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 9: Citizen AI Fellowship -->
+      <div class="card" data-cat="residency">
+        <div class="card-header">
+          <div class="card-icon">🎓</div>
+          <div class="card-title">Citizen AI Arts & Technology Fellowship 2026–2027</div>
+          <span class="urgent-badge">⚠️ דחוף!</span>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ 30 ספטמבר 2026</span>
+          <span class="tag tag-location">📍 בינלאומי / היברידי</span>
+          <span class="tag tag-prize">🏆 $3,000 מלגה</span>
+          <span class="tag tag-free">✅ ללא תואר נדרש</span>
+        </div>
+        <div class="card-desc">
+          מלגה המביאה יחד אמנים מרקעים מגוונים לחקור את הקשר בין אמנות, AI, דמוקרטיה וחיים ציבוריים. פתוחה לאמנים מתחילים, באמצע הקריירה ומבוססים, ללא ניסיון קודם ב-AI. כוללת $3,000 מלגה לשנה א' ופעילויות מורחבות בשנה ב'.
+        </div>
+        <div class="card-footer">
+          <a href="https://opportunitydesk.org/2026/09/21/citizen-ai-arts-technology-fellowship-2026-2027/" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+      <!-- Card 10: Villa Albertine -->
+      <div class="card" data-cat="residency">
+        <div class="card-header">
+          <div class="card-icon">🇫🇷</div>
+          <div class="card-title">Villa Albertine — Arts in the Age of AI Residency</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ מחזור 2026 בעיצומו</span>
+          <span class="tag tag-location">📍 ארה״ב (שהות 2 חודשים)</span>
+          <span class="tag tag-prize">🏆 ממומן במלואו</span>
+        </div>
+        <div class="card-desc">
+          המכון הצרפתי לתרבות וחינוך בארה"ב משיק תוכנית שהות בין ינואר לדצמבר 2026 לארבעה יוצרים בצומת בין אמנות וטכנולוגיות מתפתחות. כל שהות אורכת שישה שבועות עד חודשיים ומכוונת לשיתופי פעולה צרפתי-אמריקאיים. הקול הקורא לגיליון הבא צפוי ב-2027.
+        </div>
+        <div class="card-footer">
+          <a href="https://villa-albertine.org/va/professionals/call-for-applications-villa-albertines-2026-ai-and-artistic-creation-residency/" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+      <!-- Card 11: Serpentine FAE Fellowship -->
+      <div class="card" data-cat="residency">
+        <div class="card-header">
+          <div class="card-icon">🐍</div>
+          <div class="card-title">Serpentine Future Art Ecosystems R&D Fellowship</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ ספטמבר 2026 (פתיחה)</span>
+          <span class="tag tag-location">📍 לונדון, UK (היברידי)</span>
+          <span class="tag tag-prize">🏆 מלגה + מנטורינג</span>
+        </div>
+        <div class="card-desc">
+          מוסד Serpentine בלונדון בחר 4 פלואים מבין קרוב ל-1,000 מועמדים בקול קורא בינלאומי לאמנים, אוצרים ויוצרי טכנולוגיה. התוכנית מציעה מנטורינג, נסיעות ללונדון ומחקר מקורי בצומת אמנות-טכנולוגיה-מדיניות. הגיליון הבא צפוי ב-2027.
+        </div>
+        <div class="card-footer">
+          <a href="https://fadmagazine.com/2026/09/02/serpentine-future-art-ecosystems-rd-fellowship-ai/" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+      <!-- Card 12: Numéric Spain -->
+      <div class="card" data-cat="residency">
+        <div class="card-header">
+          <div class="card-icon">🇪🇸</div>
+          <div class="card-title">Numèric 2026 — שהות AI ואמנות, ספרד</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-deadline">⏰ בדיקה באתר</span>
+          <span class="tag tag-location">📍 אגוייאנה, קטלוניה</span>
+          <span class="tag tag-prize">🏆 ממומן</span>
+          <span class="tag tag-free">🌐 פתוח לכולם</span>
+        </div>
+        <div class="card-desc">
+          שתי מלגות שהות מחקר ויצירה באגוייאנה, ספרד, בשיתוף מרכזי אמנות בגירונה ופיגרס. גיליון 2026 עוסק ב"מילה" — חקירת LLMs כ"בני שיח לא נוחים" שמאתגרים את מושגי היצירתיות וזכות היוצרים. 4 שבועות שהות + חודש הכנה + שני חודשי סיום.
+        </div>
+        <div class="card-footer">
+          <a href="https://artinfoland.com/opportunities/numeric-2026-grant-ai-art-residency-spain" target="_blank" class="card-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- ISRAEL DIVIDER                         -->
+  <!-- ══════════════════════════════════════ -->
+  <div id="section-israel-divider" class="israel-divider">
+    <div class="flag">🇮🇱</div>
+    <div class="israel-divider-text">
+      <h3>הזדמנויות ישראליות</h3>
+      <p>קולות קוראים, מלגות ותחרויות לאמנים ישראלים ויוצרים המתגוררים בישראל</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 🇮🇱 ISRAEL SECTION                    -->
+  <!-- ══════════════════════════════════════ -->
+  <div id="section-israel" class="section-block">
+    <div class="section-heading">
+      <h2>🇮🇱 ישראל — קולות קוראים</h2>
+      <span class="section-count il">3 הזדמנויות</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="cards-grid">
+
+      <!-- Card 13: Tel Aviv Museum Open Call -->
+      <div class="card il-card" data-cat="israel">
+        <div class="card-header">
+          <div class="card-icon">🏛️</div>
+          <div class="card-title">מוזיאון העיר תל אביב-יפו — קול קורא לתערוכה שנתית 2026</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-il">🇮🇱 ישראל</span>
+          <span class="tag tag-location">📍 תל אביב-יפו</span>
+          <span class="tag tag-prize">🏆 שכר אמנ.ית</span>
+          <span class="tag tag-free">✅ בדיקה באתר</span>
+        </div>
+        <div class="card-desc">
+          מוזיאון העיר תל אביב-יפו פרסם קול קורא לתערוכה השנתית 2026. יוצרות ויוצרים שייבחרו יקבלו שכר אמן.ית בהתאם לתעריפון איגוד האמנים. מיועד לאמנים ישראלים ומציע הזדמנות ייחודית לחשיפה ציבורית בבמה מרכזית בתל אביב.
+        </div>
+        <div class="card-footer">
+          <a href="https://artoday.art/category/%D7%A7%D7%95%D7%9C-%D7%A7%D7%95%D7%A8%D7%90/" target="_blank" class="card-btn il-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+      <!-- Card 14: Artis Residency Fellowship Israel -->
+      <div class="card il-card" data-cat="israel">
+        <div class="card-header">
+          <div class="card-icon">✈️</div>
+          <div class="card-title">ארטיס — שותפויות-רזידנסי לאמנים מישראל 2027</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-il">🇮🇱 ישראל</span>
+          <span class="tag tag-deadline">⏰ נסגר (31 אוגוסט 2026)</span>
+          <span class="tag tag-location">📍 בינלאומי</span>
+          <span class="tag tag-free">🌐 לאמנים ישראלים</span>
+        </div>
+        <div class="card-desc">
+          ארטיס מזמינה אמנים פלסטיים מישראל המתגוררים בכל מקום בעולם להגיש מועמדות לתוכנית שיתוף פעולה עם תוכניות שהות בינלאומיות מובילות לשנת 2027. מטרתה לפתח פרקטיקה אמנותית ולהרחיב קשרים מקצועיים בזירה הבינלאומית.
+        </div>
+        <div class="card-footer">
+          <a href="https://www.erev-rav.com/archives/62603" target="_blank" class="card-btn il-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+      <!-- Card 15: HaMekarer Open Call -->
+      <div class="card il-card" data-cat="israel">
+        <div class="card-header">
+          <div class="card-icon">🧊</div>
+          <div class="card-title">המקרר — קול קורא לעונת הפעילות 2026</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-il">🇮🇱 ישראל</span>
+          <span class="tag tag-location">📍 ישראל</span>
+          <span class="tag tag-free">✅ פתוח לכולם</span>
+          <span class="tag tag-deadline">⏰ בדיקה באתר</span>
+        </div>
+        <div class="card-desc">
+          המקרר מזמין אמנים.ות, אוצרים.ות, יוצרים.ות ואקטיביסטים.ות להגיש הצעות לעונת הפעילות 2026. הפרויקט פתוח ליוצרים מכל התחומים — אמנות חזותית, פרפורמנס, תנועה, מיצב, טקסט, סאונד ווידאו — לעסוק בשאלות אתיקה ואחריות.
+        </div>
+        <div class="card-footer">
+          <a href="https://hamecarer.co.il/about/open-call/" target="_blank" class="card-btn il-btn">🔗 לפרטים נוספים</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <p>🤖 נוצר אוטומטית על ידי <strong>Claude</strong> · <span>11 באוקטובר 2026</span> · גיליון #31</p>
-  <p style="margin-top:6px;font-size:0.72rem;opacity:0.55;">המידע מבוסס על חיפושי רשת עדכניים · יש לאמת תאריכים ופרטים מול האתרים הרשמיים</p>
+<!-- FOOTER -->
+<footer class="footer">
+  <p>נוצר אוטומטית על ידי <span>Claude</span> · 18 באוקטובר 2026 · גיליון #32 · כל הקישורים מובילים למקורות חיצוניים · בדקו תמיד את פרטי הדדליין באתרים הרשמיים</p>
 </footer>
 
-<!-- ===== JS ===== -->
 <script>
-  const CAT_MAP = {
-    all:      ['block-film','block-art','block-residency','block-israel','il-divider'],
-    film:     ['block-film'],
-    art:      ['block-art'],
-    residency:['block-residency'],
-    israel:   ['block-israel','il-divider'],
-  };
-
-  function showTab(cat, btn) {
+  function showTab(tab) {
     // Update active tab button
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.remove('active');
-    });
-    btn.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
 
-    // Show/hide blocks
-    const allBlocks = ['block-film','block-art','block-residency','block-israel','il-divider'];
-    const toShow = CAT_MAP[cat] || allBlocks;
+    const sectionFilm      = document.getElementById('section-film');
+    const sectionArt       = document.getElementById('section-art');
+    const sectionResidency = document.getElementById('section-residency');
+    const sectionIsrael    = document.getElementById('section-israel');
+    const sectionDivider   = document.getElementById('section-israel-divider');
 
-    allBlocks.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (toShow.includes(id)) {
+    if (tab === 'all') {
+      [sectionFilm, sectionArt, sectionResidency, sectionIsrael, sectionDivider].forEach(el => {
         el.classList.remove('hidden');
-      } else {
-        el.classList.add('hidden');
-      }
-    });
-
-    // Scroll to top of content smoothly
-    document.querySelector('.container').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // Highlight cards with upcoming deadlines (within 2 weeks from today)
-  // Today = October 11, 2026
-  // Already handled via HTML for now, but dynamic check below:
-  const TODAY = new Date('2026-10-11');
-  const TWO_WEEKS = 14 * 24 * 60 * 60 * 1000;
-
-  document.querySelectorAll('.card').forEach(card => {
-    const deadlineTag = card.querySelector('.tag.deadline');
-    if (!deadlineTag) return;
-    const txt = deadlineTag.textContent;
-    // Quick check for "October" or "ספטמבר" deadlines — already badged in HTML
-    // Dynamic future dates check:
-    const match = txt.match(/(\d{1,2})\s+(ב)?אוקטובר\s+(\d{4})/);
-    if (match) {
-      const day = parseInt(match[1]);
-      const year = parseInt(match[3]);
-      const deadlineDate = new Date(year, 9, day); // October = 9
-      const diff = deadlineDate - TODAY;
-      if (diff > 0 && diff <= TWO_WEEKS) {
-        if (!card.querySelector('.urgent-badge')) {
-          const badge = document.createElement('span');
-          badge.className = 'urgent-badge';
-          badge.textContent = '⚠️ דחוף!';
-          card.querySelector('.card-top').appendChild(badge);
-        }
-      }
+      });
+    } else if (tab === 'film') {
+      sectionFilm.classList.remove('hidden');
+      [sectionArt, sectionResidency, sectionIsrael, sectionDivider].forEach(el => el.classList.add('hidden'));
+    } else if (tab === 'art') {
+      sectionArt.classList.remove('hidden');
+      [sectionFilm, sectionResidency, sectionIsrael, sectionDivider].forEach(el => el.classList.add('hidden'));
+    } else if (tab === 'residency') {
+      sectionResidency.classList.remove('hidden');
+      [sectionFilm, sectionArt, sectionIsrael, sectionDivider].forEach(el => el.classList.add('hidden'));
+    } else if (tab === 'israel') {
+      sectionIsrael.classList.remove('hidden');
+      sectionDivider.classList.remove('hidden');
+      [sectionFilm, sectionArt, sectionResidency].forEach(el => el.classList.add('hidden'));
     }
-  });
+
+    // Scroll to top of main smoothly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 </script>
 
 </body>
